@@ -7,6 +7,13 @@ module.exports = (env, argv) => {
     const isDevelopmentMode = !argv || argv.mode === 'development';
 
     // ==============================================
+    // Paths.
+
+    const rootPath = path.resolve(__dirname, '..');
+    const srcPath = path.join(rootPath, 'src');
+    const outPath = path.join(rootPath, 'dist');
+
+    // ==============================================
     // Loader rules.
 
     const ts2js = {
@@ -30,17 +37,6 @@ module.exports = (env, argv) => {
     };
 
     const css2file = MiniCssExtractPlugin.loader;
-
-    // ==============================================
-    // Dev server rules.
-
-    const rootPath = path.resolve(__dirname, '..');
-    const srcPath = path.join(rootPath, 'src');
-    const outPath = path.join(rootPath, 'dist');
-
-    const serverIP = '0.0.0.0';
-    const localIP = '127.0.0.1';
-    const serverPort = 8080;
 
     // ==============================================
     // Final configuration.
@@ -78,25 +74,6 @@ module.exports = (env, argv) => {
                 filename: 'style.css'
             }),
             new CleanWebpackPlugin()
-        ],
-        devServer: {
-            host: serverIP,
-            port: serverPort,
-            hot: true,
-            open: {
-                target: `http://${localIP}:${serverPort}`
-            },
-            historyApiFallback: {
-                disableDotRule: true,
-            },
-            devMiddleware: {
-                // webpack-dev-server doesn't write the files on the disk by default.
-                // But we have to write the result HTML file to the disk, so we turn on this option.
-                writeToDisk: true
-            },
-            static: {
-                directory: outPath
-            }
-        }
+        ]
     };
 };
