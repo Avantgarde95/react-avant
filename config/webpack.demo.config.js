@@ -77,8 +77,7 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new MiniCssExtractPlugin({
-                //filename: '[name].[contenthash].css'
-                filename: 'style.css'
+                filename: '[name].[contenthash].css'
             }),
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
