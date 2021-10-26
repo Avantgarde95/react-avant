@@ -1,7 +1,5 @@
 {
     "compilerOptions": {
-        "declaration": true,
-        "declarationDir": "dist",
         "module": "esnext",
         "target": "es3",
         "sourceMap": true,
@@ -17,12 +15,6 @@
                 "src/*"
             ]
         },
-        "plugins": [
-            {
-                "transform": "typescript-transform-paths",
-                "afterDeclarations": true
-            }
-        ]
     },
     "exclude": [
         "node_modules"

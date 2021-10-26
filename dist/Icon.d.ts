@@ -1,4 +1,4 @@
-import type { IconDefinition } from "../node_modules/@fortawesome/fontawesome-common-types";
+import type { IconDefinition } from "../../node_modules/@fortawesome/fontawesome-common-types";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 /**
  * Icon props.

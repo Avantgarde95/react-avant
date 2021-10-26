@@ -1,0 +1,62 @@
+@use './Common';
+
+.app {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+    color: Common.$black;
+}
+
+.header {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
+
+    color: Common.$white;
+    background-color: Common.$black;
+}
+
+.title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.subtitle {
+    margin: 0;
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.link {
+    cursor: pointer;
+    box-sizing: border-box;
+
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+    border: none;
+    font-family: inherit;
+    font-size: 2.5rem;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        color: Common.$yellow;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 100%;
+    flex: 1;
+}
