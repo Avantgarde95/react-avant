@@ -50,17 +50,20 @@ module.exports = (env, argv) => {
             filename: 'index.js',
             libraryTarget: 'umd'
         },
+        /*
         optimization: {
             splitChunks: {
                 chunks: 'all'
             }
         },
+        */
         resolve: {
             modules: ['node_modules', srcPath],
             extensions: ['.ts', '.tsx', '.js']
         },
         externals: {
-            'react': 'react'
+            'react': 'react',
+            'prismjs': 'prismjs'
         },
         module: {
             rules: [

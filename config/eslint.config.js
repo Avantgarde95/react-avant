@@ -87,6 +87,7 @@ module.exports = {
         'consistent-return': 'off',
         'default-case': 'off',
         'no-param-reassign': 'off',
-        'import/no-extraneous-dependencies': 'off'
+        'import/no-extraneous-dependencies': 'off',
+        'import/no-unresolved': [2, { ignore: ['react-avant'] }]
     }
 };
