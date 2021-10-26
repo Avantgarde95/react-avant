@@ -1,7 +1,8 @@
 import React from 'react';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 
-import { Icon } from 'library/Icon';
+import { Icon } from 'react-avant';
+import 'react-avant/style.css';
 
 import { Demo } from 'demo/component/Demo';
 import styles from 'demo/style/App.scss';

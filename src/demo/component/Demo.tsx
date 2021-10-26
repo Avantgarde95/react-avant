@@ -7,7 +7,8 @@ import 'prismjs/themes/prism-okaidia.css';
 import { faGuitar } from '@fortawesome/free-solid-svg-icons/faGuitar';
 import { faMusic } from '@fortawesome/free-solid-svg-icons/faMusic';
 
-import { Icon } from 'library/Icon';
+import { Icon } from 'react-avant';
+import 'react-avant/style.css';
 
 import styles from 'demo/style/Demo.scss';
 
@@ -23,9 +24,11 @@ export const Demo = () => {
             <pre>
                 <code className={'language-tsx'}>
                     {`import React from 'react';
-import { Icon } from 'react-avant';
 import { faGuitar } from '@fortawesome/free-solid-svg-icons/faGuitar';
 import { faMusic } from '@fortawesome/free-solid-svg-icons/faMusic';
+
+import { Icon } from 'react-avant';
+import 'react-avant/dist/style.css';
 
 const App = () => (
     <div style={{ fontSize: '1.5rem' }}>

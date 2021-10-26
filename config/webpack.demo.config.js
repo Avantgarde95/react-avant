@@ -31,7 +31,7 @@ module.exports = (env, argv) => {
     const css2css = {
         loader: 'css-loader', options: {
             modules: {
-                auto: filePath => !filePath.includes('node_modules'),
+                auto: filePath => !filePath.includes('node_modules') && !filePath.includes('dist'),
                 mode: 'local',
                 localIdentName: '[path][name]__[local]--[hash:base64:5]'
             }
@@ -43,7 +43,9 @@ module.exports = (env, argv) => {
     // ==============================================
     // Aliases & externals.
 
-    const alias = {};
+    const alias = {
+        'react-avant': path.join(rootPath, 'dist')
+    };
 
     // ==============================================
     // Final configuration.
