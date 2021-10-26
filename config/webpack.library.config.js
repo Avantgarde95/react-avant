@@ -50,6 +50,8 @@ module.exports = (env, argv) => {
             filename: 'index.js',
             libraryTarget: 'umd'
         },
+        // Turn off chunk splitting to prevent conflict when packing the external libraries.
+        // ex. Our code -> index.js, External library -> index.js ... Conflict!
         /*
         optimization: {
             splitChunks: {
