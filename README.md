@@ -14,3 +14,4 @@ You can the example of each component at <https://avantgarde95.github.io/react-a
 - Run `npm run demo:serve` to build the webpage in the development mode.
   - Then open `127.0.0.1:8080` in your web browser.
 - Run `npm run demo:build` to build the webpage in the production mode.
+- The outputs are created at **docs** folder.
