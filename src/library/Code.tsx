@@ -10,7 +10,7 @@ import 'prismjs/themes/prism-okaidia.css';
  * Code props.
  */
 interface Props {
-    language: string;
+    language?: string;
     className?: string;
     children: ReactNode;
 }
@@ -25,7 +25,7 @@ export const Code = ({ language, className, children }: Props) => {
 
     return (
         <pre className={className}>
-            <code className={`language-${language}`} ref={codeRef}>
+            <code className={typeof language !== 'undefined' ? `language-${language}` : ''} ref={codeRef}>
                 {children}
             </code>
         </pre>

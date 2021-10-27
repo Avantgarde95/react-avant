@@ -7,7 +7,7 @@ import 'prismjs/themes/prism-okaidia.css';
  * Code props.
  */
 interface Props {
-    language: string;
+    language?: string;
     className?: string;
     children: ReactNode;
 }

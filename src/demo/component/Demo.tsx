@@ -2,7 +2,7 @@ import React from 'react';
 import { faGuitar } from '@fortawesome/free-solid-svg-icons/faGuitar';
 import { faMusic } from '@fortawesome/free-solid-svg-icons/faMusic';
 
-import { Icon, Code, Sandbox } from 'react-avant';
+import { Icon, Code, Sandbox, Markdown } from 'react-avant';
 import 'react-avant/style.css';
 
 import styles from 'demo/style/Demo.scss';
@@ -72,11 +72,52 @@ const App = () => (
         <div>
             <style type={'text/css'}>{'.sandbox { width: 100%; height: 500px; }'}</style>
             <Sandbox className={'sandbox'} name={'lets-react-simple-typescript-example-7xid9'} />
-            <Sandbox
-                className={'sandbox'}
-                name={'lets-react-simple-typescript-example-7xid9'}
-                module={'/src/App.ts'}
-            />
+            <Sandbox className={'sandbox'} name={'lets-react-simple-typescript-example-7xid9'} module={'/src/App.ts'} />
+        </div>
+        <h3 className={styles.section}>Markdown</h3>
+        <div className={styles.description}>Markdown renderer built on react-markdown</div>
+        <Code language={'tsx'}>
+            {`import React from 'react';
+
+import { Markdown } from 'react-avant';
+import 'react-avant/dist/style.css';
+
+const App = () => (
+    <div>
+        <Markdown fallback={'Loading...'}>
+            {\`# My article
+
+## Fruits
+
+- Apple
+- Banana
+- Orange
+
+## Drinks
+
+- Water
+- Juice
+- Milk\`}
+        </Markdown>
+    </div>
+);`}
+        </Code>
+        <div>
+            <Markdown fallback={'Loading...'}>
+                {`# My article
+
+## Fruits
+
+- Apple
+- Banana
+- Orange
+
+## Drinks
+
+- Water
+- Juice
+- Milk`}
+            </Markdown>
         </div>
     </div>
 );

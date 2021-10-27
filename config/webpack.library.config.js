@@ -39,6 +39,17 @@ module.exports = (env, argv) => {
     const css2file = MiniCssExtractPlugin.loader;
 
     // ==============================================
+    // Aliases & externals.
+
+    const alias = {};
+
+    const externals = {
+        'react': 'react',
+        'prismjs': 'prismjs',
+        'react-markdown': 'react-markdown'
+    };
+
+    // ==============================================
     // Final configuration.
 
     return {
@@ -60,13 +71,11 @@ module.exports = (env, argv) => {
         },
         */
         resolve: {
+            alias: alias,
             modules: ['node_modules', srcPath],
             extensions: ['.ts', '.tsx', '.js']
         },
-        externals: {
-            'react': 'react',
-            'prismjs': 'prismjs'
-        },
+        externals: externals,
         module: {
             rules: [
                 { test: /\.tsx?$/, use: [ts2js] },
