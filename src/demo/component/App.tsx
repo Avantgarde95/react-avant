@@ -4,6 +4,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { Icon } from 'react-avant';
 import 'react-avant/style.css';
 
+import { Menu } from 'demo/component/Menu';
 import { Demo } from 'demo/component/Demo';
 import styles from 'demo/style/App.scss';
 
@@ -24,6 +25,7 @@ export const App = () => (
                 <Icon definition={faGithub} />
             </a>
         </div>
+        <Menu />
         <Demo />
     </div>
 );

@@ -6,9 +6,10 @@ import { Icon, Code, Sandbox, Markdown } from 'react-avant';
 import 'react-avant/style.css';
 
 import styles from 'demo/style/Demo.scss';
+import { useStore } from 'demo/store/Store';
 
-export const Demo = () => (
-    <div className={styles.demo}>
+const IconDemo = () => (
+    <>
         <h3 className={styles.section}>Icon</h3>
         <div className={styles.description}>Component for using Font Awesome easily</div>
         <Code language={'tsx'}>
@@ -30,6 +31,11 @@ const App = () => (
             <Icon definition={faGuitar} />
             <Icon definition={faMusic} />
         </div>
+    </>
+);
+
+const CodeDemo = () => (
+    <>
         <h3 className={styles.section}>Code</h3>
         <div className={styles.description}>Code highlighter built on prism.js</div>
         <Code language={'tsx'}>
@@ -47,6 +53,11 @@ const App = () => (
         <div>
             <Code language={'typescript'}>const value: number = 5;</Code>
         </div>
+    </>
+);
+
+const SandboxDemo = () => (
+    <>
         <h3 className={styles.section}>Sandbox</h3>
         <div className={styles.description}>Component for embedding CodeSandbox easily</div>
         <Code language={'tsx'}>
@@ -74,6 +85,11 @@ const App = () => (
             <Sandbox className={'sandbox'} name={'lets-react-simple-typescript-example-7xid9'} />
             <Sandbox className={'sandbox'} name={'lets-react-simple-typescript-example-7xid9'} module={'/src/App.ts'} />
         </div>
+    </>
+);
+
+const MarkdownDemo = () => (
+    <>
         <h3 className={styles.section}>Markdown</h3>
         <div className={styles.description}>Markdown renderer built on react-markdown</div>
         <Code language={'tsx'}>
@@ -119,5 +135,23 @@ const App = () => (
 - Milk`}
             </Markdown>
         </div>
-    </div>
+    </>
 );
+
+export const Demo = () => {
+    const { currentSection } = useStore();
+
+    const CurrentDemo = {
+        Icon: IconDemo,
+        Code: CodeDemo,
+        Sandbox: SandboxDemo,
+        Markdown: MarkdownDemo,
+    }[currentSection];
+
+    // Use key to force React to re-render <div/> when the section is changed.
+    return (
+        <div className={styles.demo} key={currentSection}>
+            <CurrentDemo />
+        </div>
+    );
+};

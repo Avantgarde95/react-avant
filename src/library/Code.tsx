@@ -19,8 +19,10 @@ interface Props {
  * Code highlighter built on prism.js.
  */
 export const Code = ({ language, className, children }: Props) => {
-    const codeRef = useCallback((element: HTMLElement) => {
-        highlightElement(element);
+    const codeRef = useCallback((element: HTMLElement | null) => {
+        if (element !== null) {
+            highlightElement(element);
+        }
     }, []);
 
     return (
