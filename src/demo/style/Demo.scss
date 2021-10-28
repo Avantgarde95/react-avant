@@ -12,10 +12,12 @@
 
 .demo {
     box-sizing: border-box;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 
     width: 100%;
     height: 100%;
+    min-height: 0;
     flex: 1;
     padding: 1rem;
 
@@ -37,4 +39,36 @@
 
 .description {
     margin-bottom: 1rem;
+}
+
+.columns {
+    overflow-y: auto;
+
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    flex: 1;
+}
+
+.column {
+    width: 100%;
+
+    @media (min-width: 900px) {
+        overflow-y: auto;
+        box-sizing: border-box;
+        display: inline-block;
+        vertical-align: top;
+
+        width: 50%;
+        height: 100%;
+
+        &:not(:last-child) {
+            padding-right: 1rem;
+        }
+
+        &:not(:first-child) {
+            padding-left: 1rem;
+            border-left: 3px solid Common.$black;
+        }
+    }
 }

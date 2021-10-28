@@ -1,23 +1,23 @@
 import React from 'react';
 
-import { allSections, useStore } from 'demo/store/Store';
+import { allSectionNames, useStore } from 'demo/store/Store';
 import styles from 'demo/style/Menu.scss';
 
 export const Menu = () => {
-    const { currentSection, selectSection } = useStore();
+    const { currentSectionName, selectSection } = useStore();
 
     return (
         <div className={styles.menu}>
-            {allSections.map(section => (
+            {allSectionNames.map(sectionName => (
                 <button
-                    className={`${styles.section} ${section === currentSection ? styles.isSelected : ''}`}
-                    key={section}
+                    className={`${styles.section} ${sectionName === currentSectionName ? styles.isSelected : ''}`}
+                    key={sectionName}
                     type={'button'}
                     onClick={() => {
-                        selectSection(section);
+                        selectSection(sectionName);
                     }}
                 >
-                    {section}
+                    {sectionName}
                 </button>
             ))}
         </div>

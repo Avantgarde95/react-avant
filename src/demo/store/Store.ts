@@ -1,23 +1,23 @@
 import create from 'zustand';
 
-export const allSections = ['Icon', 'Code', 'Sandbox', 'Markdown'] as const;
+export const allSectionNames = ['Icon', 'Code', 'Sandbox', 'Markdown'] as const;
 
 /**
  * Union type of the section names.
  */
-export type Section = typeof allSections[number];
+export type SectionName = typeof allSectionNames[number];
 
 /**
  * Store for managing the section selection.
  */
 interface Store {
-    currentSection: Section;
-    selectSection: (section: Section) => void;
+    currentSectionName: SectionName;
+    selectSection: (sectionName: SectionName) => void;
 }
 
 export const useStore = create<Store>(set => ({
-    currentSection: 'Icon',
-    selectSection: (section: Section) => {
-        set({ currentSection: section });
+    currentSectionName: 'Icon',
+    selectSection: (sectionName: SectionName) => {
+        set({ currentSectionName: sectionName });
     },
 }));
