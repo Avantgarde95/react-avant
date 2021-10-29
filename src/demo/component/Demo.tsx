@@ -147,7 +147,8 @@ export const Demo = () => {
     // Use key to force React to re-render <div/> when the section is changed.
     return (
         <div className={styles.demo} key={currentSectionName}>
-            <h3 className={styles.section}>{currentSectionName}</h3>
+            <h3 className={styles.sectionName}>{currentSectionName}</h3>
+            <div className={styles.sectionDescription}>{section.description}</div>
             <div className={styles.columns}>
                 <div className={styles.column}>
                     <Code language={'tsx'}>{section.code}</Code>
