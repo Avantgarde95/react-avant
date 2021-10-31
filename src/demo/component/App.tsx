@@ -2,7 +2,7 @@ import React from 'react';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 
 import { Icon } from 'react-avant';
-import 'react-avant/style.css';
+import 'react-avant/index.css';
 
 import { Menu } from 'demo/component/Menu';
 import { Demo } from 'demo/component/Demo';

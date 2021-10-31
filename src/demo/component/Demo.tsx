@@ -3,7 +3,7 @@ import { faGuitar } from '@fortawesome/free-solid-svg-icons/faGuitar';
 import { faMusic } from '@fortawesome/free-solid-svg-icons/faMusic';
 
 import { Icon, Code, Sandbox, Markdown } from 'react-avant';
-import 'react-avant/style.css';
+import 'react-avant/index.css';
 
 import styles from 'demo/style/Demo.scss';
 import { SectionName, useStore } from 'demo/store/Store';
@@ -25,7 +25,7 @@ import { faGuitar } from '@fortawesome/free-solid-svg-icons/faGuitar';
 import { faMusic } from '@fortawesome/free-solid-svg-icons/faMusic';
 
 import { Icon } from 'react-avant';
-import 'react-avant/dist/style.css';
+import 'react-avant/dist/index.css';
 
 const App = () => (
     <div style={{ fontSize: '2rem' }}>
@@ -45,7 +45,7 @@ const App = () => (
         code: `import React from 'react';
 
 import { Code } from 'react-avant';
-import 'react-avant/dist/style.css';
+import 'react-avant/dist/index.css';
 
 const App = () => (
     <div>
@@ -63,7 +63,7 @@ const App = () => (
         code: `import React from 'react';
 
 import { Sandbox } from 'react-avant';
-import 'react-avant/dist/style.css';
+import 'react-avant/dist/index.css';
 
 const App = () => (
     <div>
@@ -95,7 +95,7 @@ const App = () => (
         code: `import React from 'react';
 
 import { Markdown } from 'react-avant';
-import 'react-avant/dist/style.css';
+import 'react-avant/dist/index.css';
 
 const App = () => (
     <div>

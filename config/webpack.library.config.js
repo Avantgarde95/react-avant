@@ -53,12 +53,18 @@ module.exports = (env, argv) => {
     // Final configuration.
 
     return {
-        entry: path.join(srcPath, 'library', 'index.ts'),
+        entry: {
+            index: path.join(srcPath, 'library', 'index.ts'),
+            Icon: path.join(srcPath, 'library', 'Icon.tsx'),
+            Code: path.join(srcPath, 'library', 'Code.tsx'),
+            Sandbox: path.join(srcPath, 'library', 'Sandbox.tsx'),
+            Markdown: path.join(srcPath, 'library', 'Markdown.tsx')
+        },
         devtool: isDevelopmentMode ? 'inline-source-map' : false,
         target: ['web', 'es3'],
         output: {
             path: outPath,
-            filename: 'index.js',
+            filename: '[name].js',
             libraryTarget: 'umd'
         },
         // Turn off chunk splitting to prevent conflict when packing the external libraries.
@@ -85,7 +91,7 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new MiniCssExtractPlugin({
-                filename: 'style.css'
+                filename: '[name].css'
             }),
             new CleanWebpackPlugin()
         ]
