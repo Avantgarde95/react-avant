@@ -7,7 +7,7 @@ You can the example of each component at <https://avantgarde95.github.io/react-a
 
 - Run `npm run library:debug` to build the library in the development mode.
 - Run `npm run library:build` to build the library in the production mode.
-- The outputs are created at **dist** folder.
+- The outputs are created at **lib** folder.
 
 ### How to build/debug the demo webpage
 

@@ -3,10 +3,10 @@
     "version": "0.0.1",
     "description": "Commonly used React components",
     "author": "Hunmin Park",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
     "files": [
-        "dist"
+        "lib"
     ],
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.36"
