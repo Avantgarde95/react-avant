@@ -65,7 +65,8 @@ module.exports = (env, argv) => {
         output: {
             path: outPath,
             filename: '[name].js',
-            libraryTarget: 'umd'
+            libraryTarget: 'umd',
+            globalObject: 'this'
         },
         // Turn off chunk splitting to prevent conflict when packing the external libraries.
         // ex. Our code -> index.js, External library -> index.js ... Conflict!
