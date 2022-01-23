@@ -3,10 +3,8 @@
     "version": "0.0.1",
     "description": "Commonly used React components",
     "author": "Hunmin Park",
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
     "files": [
-        "lib"
+        "component"
     ],
     "peerDependencies": {
         "react": "17.x",
@@ -53,10 +51,8 @@
         "@types/node": "^16.11.5"
     },
     "scripts": {
-        "library:debug": "tsm \"src/**/*.{css,scss}\" && webpack --config ./config/webpack.library.config.js --mode=development --progress --watch",
-        "library:build": "tsm \"src/**/*.{css,scss}\" && webpack --config ./config/webpack.library.config.js --mode=production --progress",
-        "demo:serve": "concurrently \"tsm \\\"src/**/*.{css,scss}\\\" --watch\" \"webpack serve --config ./config/webpack.demo.config.js --mode=development --progress\"",
-        "demo:build": "tsm \"src/**/*.{css,scss}\" && webpack --config ./config/webpack.demo.config.js --mode=production --progress",
+        "library:debug": "tsm \"src/**/*.{css,scss}\" && webpack --config ./config/webpack.config.js --mode=development --progress --watch",
+        "library:build": "tsm \"src/**/*.{css,scss}\" && webpack --config ./config/webpack.config.js --mode=production --progress",
         "lint": "eslint --config ./config/eslint.config.js ./src/**/*.{js,ts,jsx,tsx}",
         "lint:fix": "eslint --config ./config/eslint.config.js --fix ./src/**/*.{js,ts,jsx,tsx}"
     }

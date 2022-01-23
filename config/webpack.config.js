@@ -2,38 +2,53 @@ const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env, argv) => {
     const isDevelopmentMode = !argv || argv.mode === 'development';
 
     // ==============================================
-    // Paths.
+    // Configurations.
 
     const rootPath = path.resolve(__dirname, '..');
     const srcPath = path.join(rootPath, 'src');
-    const outPath = path.join(rootPath, 'docs');
+    const outPath = path.join(rootPath, 'component');
 
-    // ==============================================
-    // webpack-dev-server rules.
+    // Components provided by this library.
+    const componentNames = [
+        'Icon',
+        'Code',
+        'Sandbox',
+        'Markdown',
+        'Image'
+    ];
 
-    const serverIP = '0.0.0.0';
-    const localIP = '127.0.0.1';
-    const serverPort = 8080;
+    // Libraries used by this library.
+    const externalNames = [
+        'react',
+        'prismjs',
+        'react-markdown',
+        'luminous-lightbox'
+    ];
 
     // ==============================================
     // Loader rules.
 
-    const ts2js = 'ts-loader';
+    const ts2js = {
+        loader: 'ts-loader',
+        options: {
+            compiler: 'ttypescript'
+        }
+    };
 
     const sass2css = 'sass-loader';
 
     const css2css = {
         loader: 'css-loader', options: {
             modules: {
-                auto: filePath => !filePath.includes('node_modules') && !filePath.includes('lib'),
+                auto: filePath => !filePath.includes('node_modules'),
                 mode: 'local',
-                localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                //localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                localIdentName: 'react-avant-[path][name]__[local]--[hash:base64:5]'
             }
         }
     };
@@ -43,31 +58,39 @@ module.exports = (env, argv) => {
     // ==============================================
     // Aliases & externals.
 
-    const alias = {
-        'react-avant': path.join(rootPath, 'lib')
-    };
+    const alias = {};
+    const externals = Object.fromEntries(externalNames.map(name => [name, name]));
 
     // ==============================================
     // Final configuration.
 
     return {
-        entry: path.join(srcPath, 'demo', 'index.tsx'),
+        entry: Object.fromEntries(componentNames.map(name =>
+            [name, path.join(srcPath, 'component', `${name}.tsx`)]
+        )),
         devtool: isDevelopmentMode ? 'inline-source-map' : false,
         target: ['web', 'es3'],
         output: {
             path: outPath,
-            filename: '[name].[contenthash].js'
+            filename: '[name].js',
+            libraryTarget: 'umd',
+            globalObject: 'this'
         },
+        // Turn off chunk splitting to prevent conflict when packing the external libraries.
+        // ex. Our code -> index.js, External library -> index.js ... Conflict!
+        /*
         optimization: {
             splitChunks: {
                 chunks: 'all'
             }
         },
+        */
         resolve: {
             alias: alias,
             modules: ['node_modules', srcPath],
             extensions: ['.ts', '.tsx', '.js']
         },
+        externals: externals,
         module: {
             rules: [
                 { test: /\.tsx?$/, use: [ts2js] },
@@ -77,32 +100,9 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new MiniCssExtractPlugin({
-                filename: '[name].[contenthash].css'
+                filename: '[name].css'
             }),
-            new CleanWebpackPlugin(),
-            new HtmlWebpackPlugin({
-                template: path.join(srcPath, 'demo', 'Template.html'),
-                filename: path.join(outPath, 'index.html')
-            })
-        ],
-        devServer: {
-            host: serverIP,
-            port: serverPort,
-            hot: true,
-            open: {
-                target: `http://${localIP}:${serverPort}`
-            },
-            historyApiFallback: {
-                disableDotRule: true,
-            },
-            devMiddleware: {
-                // webpack-dev-server doesn't write the files on the disk by default.
-                // But we have to write the result HTML file to the disk, so we turn on this option.
-                writeToDisk: true
-            },
-            static: {
-                directory: outPath
-            }
-        }
+            new CleanWebpackPlugin()
+        ]
     };
 };

@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, SuspenseProps } from 'react';
 import type { Components } from 'react-markdown/lib/ast-to-react';
 
-import { Code } from 'library/Code';
+import { Code } from 'component/Code';
 
 // Since the size of react-markdown is large, we use code splitting and lazy loading.
 // (See https://reactjs.org/docs/code-splitting.html.)
