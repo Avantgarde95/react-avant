@@ -4,7 +4,7 @@
     "description": "Commonly used React components",
     "author": "Hunmin Park",
     "files": [
-        "component"
+        "lib"
     ],
     "peerDependencies": {
         "@fortawesome/fontawesome-svg-core": "1.x",
@@ -15,6 +15,11 @@
         "react-markdown": "7.x"
     },
     "devDependencies": {
+        "@storybook/react": "^6.4.14",
+        "@storybook/client-api": "^6.4.14",
+        "@storybook/builder-webpack5": "^6.4.14",
+        "@storybook/manager-webpack5": "^6.4.14",
+        "@storybook/addon-essentials": "^6.4.14",
         "@fortawesome/free-brands-svg-icons": "^5.15.4",
         "@fortawesome/free-regular-svg-icons": "^5.15.4",
         "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -56,10 +61,15 @@
         "task:build": "webpack --config ./config/webpack.config.js --mode=production --progress",
         "task:lint": "eslint --config ./config/eslint.config.js",
         "task:hooks": "husky install",
+        "task:start-storybook": "start-storybook",
+        "task:build-storybook": "build-storybook -o docs",
         "debug": "run-p \"task:typing -- --watch\" \"task:debug\"",
         "build": "run-s \"task:typing\" \"task:build\"",
         "lint": "run-s \"task:lint -- ./src/**/*.{js,ts,jsx,tsx}\"",
         "lint:fix": "run-s \"task:lint -- --fix ./src/**/*.{js,ts,jsx,tsx}\"",
+        "lint:fix-one": "run-s \"task:lint -- --fix {1}\" --",
+        "storybook": "run-s \"task:typing\" \"task:start-storybook\"",
+        "storybook:production": "run-s \"task:typing\" \"task:build-storybook\"",
         "prepare": "run-s \"task:hooks\""
     }
 }

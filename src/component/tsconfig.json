@@ -2,7 +2,7 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "declaration": true,
-        "declarationDir": "../../component",
+        "declarationDir": "../../lib",
         "plugins": [
             {
                 "transform": "typescript-transform-paths",

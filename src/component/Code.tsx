@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback } from 'react';
+import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 
 import { highlightElement } from 'prismjs';
 import 'prismjs/components/prism-jsx.min';
@@ -19,11 +19,13 @@ interface Props {
  * Code highlighter built on prism.js.
  */
 export const Code = ({ language, className, children }: Props) => {
-    const codeRef = useCallback((element: HTMLElement | null) => {
-        if (element !== null) {
-            highlightElement(element);
+    const codeRef = useRef<HTMLElement | null>(null);
+
+    useEffect(() => {
+        if (codeRef.current) {
+            highlightElement(codeRef.current);
         }
-    }, []);
+    }, [language, codeRef.current?.textContent]);
 
     return (
         <pre className={className}>

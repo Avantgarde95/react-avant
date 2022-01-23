@@ -11,7 +11,7 @@ module.exports = (env, argv) => {
 
     const rootPath = path.resolve(__dirname, '..');
     const srcPath = path.join(rootPath, 'src');
-    const outPath = path.join(rootPath, 'component');
+    const outPath = path.join(rootPath, 'lib');
 
     // Components provided by this library.
     const componentNames = [
