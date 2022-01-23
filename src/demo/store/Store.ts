@@ -1,6 +1,6 @@
 import create from 'zustand';
 
-export const allSectionNames = ['Icon', 'Code', 'Sandbox', 'Markdown'] as const;
+export const allSectionNames = ['Icon', 'Code', 'Sandbox', 'Markdown', 'Image'] as const;
 
 /**
  * Union type of the section names.

@@ -6,7 +6,7 @@ import 'demo/style/Page.scss';
 
 const temporaryElements = document.querySelectorAll('.temporary');
 
-for (let i = 0; i < temporaryElements.length; i++) {
+for (let i = 0; i < temporaryElements.length; i += 1) {
     temporaryElements[i].parentNode?.removeChild(temporaryElements[i]);
 }
 

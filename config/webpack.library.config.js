@@ -58,7 +58,8 @@ module.exports = (env, argv) => {
             Icon: path.join(srcPath, 'library', 'Icon.tsx'),
             Code: path.join(srcPath, 'library', 'Code.tsx'),
             Sandbox: path.join(srcPath, 'library', 'Sandbox.tsx'),
-            Markdown: path.join(srcPath, 'library', 'Markdown.tsx')
+            Markdown: path.join(srcPath, 'library', 'Markdown.tsx'),
+            Image: path.join(srcPath, 'library', 'Image.tsx')
         },
         devtool: isDevelopmentMode ? 'inline-source-map' : false,
         target: ['web', 'es3'],

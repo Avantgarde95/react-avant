@@ -2,11 +2,11 @@ import React, { FunctionComponent } from 'react';
 import { faGuitar } from '@fortawesome/free-solid-svg-icons/faGuitar';
 import { faMusic } from '@fortawesome/free-solid-svg-icons/faMusic';
 
-import { Icon, Code, Sandbox, Markdown } from 'react-avant';
+import { Icon, Code, Sandbox, Markdown, Image } from 'react-avant';
 import 'react-avant/index.css';
 
-import styles from 'demo/style/Demo.scss';
 import { SectionName, useStore } from 'demo/store/Store';
+import styles from 'demo/style/Demo.scss';
 
 /**
  * Data of each section.
@@ -135,6 +135,22 @@ const App = () => (
                 </Markdown>
             </div>
         ),
+    },
+    Image: {
+        description: 'Wrapper of img tag which shows a \'lightbox\' when the image is clicked.',
+        code: `import React from 'react';
+import { Image } from 'react-avant';
+
+const App = () => (
+    <div>
+        <Image src={'https://via.placeholder.com/150'} alt={'Simple image'}/>
+    </div>
+);`,
+        view: () => (
+            <div>
+                <Image src={'https://via.placeholder.com/150'} alt={'Simple image'} />
+            </div>
+        )
     },
 };
 
