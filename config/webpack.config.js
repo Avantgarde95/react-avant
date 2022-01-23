@@ -47,7 +47,6 @@ module.exports = (env, argv) => {
             modules: {
                 auto: filePath => !filePath.includes('node_modules'),
                 mode: 'local',
-                //localIdentName: '[path][name]__[local]--[hash:base64:5]'
                 localIdentName: 'react-avant-[path][name]__[local]--[hash:base64:5]'
             }
         }
