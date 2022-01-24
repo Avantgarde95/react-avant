@@ -19,28 +19,23 @@ module.exports = {
         '@storybook/addon-essentials'
     ],
     staticDirs: [],
-    webpackFinal: config => ({
-        ...config,
-        resolve: {
-            modules: [
-                ...config.resolve.modules,
-                ...ourConfig.resolve.modules
-            ],
-            extensions: [
-                ...config.resolve.extensions,
-                ...ourConfig.resolve.extensions
-            ],
-            alias: {
-                ...config.resolve.alias,
-                ...ourConfig.resolve.alias
-            },
-        },
-        module: {
-            rules: [
-                ...config.module.rules,
-                // Don't re-use .css & .scss rule since our rule currently does not work with Storybook...
-                ourConfig.module.rules[0]
-            ]
-        }
-    })
+    webpackFinal: config => {
+        config.resolve = {
+            ...config.resolve,
+            ...ourConfig.resolve
+        };
+
+        config.module.rules = [
+            // We need to exclude the default style rules, since applying our style rule on the default style rules breaks Webpack.
+            ...config.module.rules.filter(rule => !rule.test.toString().includes('css')),
+            ...ourConfig.module.rules
+        ];
+
+        config.plugins = [
+            ...config.plugins,
+            ...ourConfig.plugins
+        ];
+
+        return config;
+    }
 };

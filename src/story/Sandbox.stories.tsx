@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Sandbox } from 'component/Sandbox';
-import 'story/Sandbox.stories.css';
+import styles from 'story/Sandbox.stories.module.scss';
 
 const meta: ComponentMeta<typeof Sandbox> = {
     component: Sandbox,
@@ -23,7 +23,7 @@ const Template: ComponentStory<typeof Sandbox> = args => <Sandbox {...args} />;
 export const OpenProject = Template.bind({});
 
 OpenProject.args = {
-    className: 'sandbox',
+    className: styles.sandbox,
     name: 'lets-react-simple-typescript-example-7xid9'
 };
 

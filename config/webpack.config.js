@@ -45,8 +45,7 @@ module.exports = (env, argv) => {
     const css2css = {
         loader: 'css-loader', options: {
             modules: {
-                auto: filePath => !filePath.includes('node_modules'),
-                mode: 'local',
+                auto: true,
                 localIdentName: 'react-avant-[path][name]__[local]--[hash:base64:5]'
             }
         }
