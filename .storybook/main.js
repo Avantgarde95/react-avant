@@ -21,11 +21,6 @@ module.exports = {
     staticDirs: [],
     webpackFinal: config => ({
         ...config,
-        optimization: {
-            splitChunks: {
-                chunks: 'all'
-            }
-        },
         resolve: {
             modules: [
                 ...config.resolve.modules,
