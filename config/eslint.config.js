@@ -1,3 +1,12 @@
+const jsdocContexts = [
+    'FunctionDeclaration',
+    'MethodDefinition',
+    'ClassDeclaration',
+    'FunctionExpression',
+    'TSInterfaceDeclaration',
+    'TSTypeAliasDeclaration'
+];
+
 module.exports = {
     parser: '@typescript-eslint/parser',
     plugins: [
@@ -11,33 +20,44 @@ module.exports = {
         'plugin:prettier/recommended',
         'plugin:jsdoc/recommended'
     ],
-    ignorePatterns: ['node_modules/', 'src/**/*.css.d.ts', 'src/**/*.scss.d.ts'],
+    ignorePatterns: ['node_modules/', 'src/**/*.css.d.ts', 'src/**/*.scss.d.ts', 'src/**/*.stories.*'],
     settings: {
         'import/resolver': {
             node: {
                 extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
-                moduleDirectory: ['node_modules', 'src/', 'src/module/']
+                moduleDirectory: ['node_modules', 'src/']
             }
         }
     },
     rules: {
-        'jsdoc/require-jsdoc': [
-            'error',
-            {
-                'publicOnly': false,
-                'require': {
-                    'FunctionDeclaration': true,
-                    'MethodDefinition': true,
-                    'ClassDeclaration': true,
-                    'FunctionExpression': true,
-                    'ArrowFunctionExpression': false
-                },
-                'contexts': [
-                    'TSInterfaceDeclaration',
-                    'TSTypeAliasDeclaration'
-                ]
-            }
-        ],
+        'prettier/prettier': ['error', {
+            singleQuote: true,
+            semi: true,
+            useTabs: false,
+            tabWidth: 4,
+            printWidth: 120,
+            arrowParens: 'avoid',
+            endOfLine: 'auto'
+        }],
+        // Fix "'React' was used before it was defined" error.
+        // https://stackoverflow.com/a/64024916/2804329
+        'no-use-before-define': 'off',
+        // Allow modifying the properties of the parameter.
+        // (We need this because of Redux toolkit.)
+        'no-param-reassign': ['error', {
+            props: false
+        }],
+        'jsdoc/require-jsdoc': ['error', {
+            publicOnly: false,
+            require: {
+                FunctionDeclaration: true,
+                MethodDefinition: true,
+                ClassDeclaration: true,
+                FunctionExpression: true,
+                ArrowFunctionExpression: false
+            },
+            contexts: jsdocContexts
+        }],
         'jsdoc/require-description': 'error',
         'jsdoc/require-returns': 'off',
         'jsdoc/require-returns-type': 'off',
@@ -45,49 +65,33 @@ module.exports = {
         'jsdoc/require-param-type': 'off',
         'jsdoc/require-param-description': 'error',
         'jsdoc/check-param-names': 'off',
+        'import/prefer-default-export': 'off',
+        'import/no-extraneous-dependencies': ['error', {
+            devDependencies: true
+        }],
+        // Allow omitting the file extensions when importing the files.
+        'import/extensions': ['error', 'ignorePackages', {
+            js: 'never',
+            jsx: 'never',
+            ts: 'never',
+            tsx: 'never'
+        }],
+        //'import/no-extraneous-dependencies': 'off',
         'react/jsx-filename-extension': [1, {
             extensions: ['.tsx']
         }],
-        'import/prefer-default-export': 'off',
-        'import/no-extraneous-dependencies': ['error', {
-            devDependencies: true,
-        }],
         // Allow {} when setting the DOM attributes.
         'react/jsx-curly-brace-presence': 'off',
-        'prettier/prettier': [
-            'error',
-            {
-                singleQuote: true,
-                semi: true,
-                useTabs: false,
-                tabWidth: 4,
-                printWidth: 120,
-                arrowParens: 'avoid',
-                endOfLine: 'auto'
-            }
-        ],
-        // Allow omitting the file extensions when importing the files.
-        'import/extensions': [
-            'error',
-            'ignorePackages',
-            {
-                'js': 'never',
-                'jsx': 'never',
-                'ts': 'never',
-                'tsx': 'never'
-            }
-        ],
-        // Fix "'React' was used before it was defined" error. (https://stackoverflow.com/a/64024916/2804329)
-        'no-use-before-define': 'off',
-        '@typescript-eslint/no-use-before-define': ['error'],
-        // Allow inferring return and argument types from the functions.
-        '@typescript-eslint/explicit-module-boundary-types': 'off',
-        // Allow using the optional properties instead of defaultProps. (https://github.com/yannickcr/eslint-plugin-react/issues/1433)
+        'react/function-component-definition': [2, {
+            namedComponents: 'arrow-function',
+            unnamedComponents: 'arrow-function'
+        }],
+        // Allow using the optional properties instead of defaultProps.
+        // https://github.com/yannickcr/eslint-plugin-react/issues/1433
         'react/require-default-props': 'off',
-        'consistent-return': 'off',
-        'default-case': 'off',
-        'no-param-reassign': 'off',
-        'import/no-extraneous-dependencies': 'off',
-        'import/no-unresolved': [2, { ignore: ['react-avant'] }]
+        // Allow wrapping a expression using fragment.
+        'react/jsx-no-useless-fragment': [2, {
+            allowExpressions: true
+        }]
     }
 };

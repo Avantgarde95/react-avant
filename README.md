@@ -5,13 +5,12 @@ You can the example of each component at <https://avantgarde95.github.io/react-a
 
 ### How to build/debug the library
 
-- Run `npm run library:debug` to build the library in the development mode.
-- Run `npm run library:build` to build the library in the production mode.
+- Run `npm run debug` to build the library in the development mode.
+- Run `npm run build` to build the library in the production mode.
 - The outputs are created at **lib** folder.
 
-### How to build/debug the demo webpage
+### How to build/debug the [storybook](https://storybook.js.org/)
 
-- Run `npm run demo:serve` to build the webpage in the development mode.
-  - Then open `127.0.0.1:8080` in your web browser.
-- Run `npm run demo:build` to build the webpage in the production mode.
-- The outputs are created at **docs** folder.
+- Run `npm run storybook` to build the storybook in the development mode.
+- Run `npm run storybook:production` to build the storybook in the production mode.
+  - The outputs are created at **docs** folder.
