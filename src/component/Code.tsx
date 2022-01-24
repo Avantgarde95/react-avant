@@ -1,6 +1,6 @@
-import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 
-import { highlightElement } from 'prismjs';
+import { highlight, languages } from 'prismjs';
 import 'prismjs/components/prism-jsx.min';
 import 'prismjs/components/prism-typescript.min';
 import 'prismjs/components/prism-tsx.min';
@@ -18,20 +18,33 @@ interface Props {
 /**
  * Code highlighter built on prism.js.
  */
-export const Code = ({ language, className, children }: Props) => {
+export const Code = ({ language = '', className = '', children }: Props) => {
     const codeRef = useRef<HTMLElement | null>(null);
+    const [resultHTML, setResultHTML] = useState<string | null>(null);
+
+    // If the language is unprovided or wrong: Set it to 'text'.
+    const finalLanguage = typeof languages[language] !== 'undefined' ? language : 'text';
+    const prismClassName = `language-${finalLanguage}`;
 
     useEffect(() => {
-        if (codeRef.current) {
-            highlightElement(codeRef.current);
+        if (codeRef.current !== null) {
+            const code = codeRef.current.textContent ?? '';
+            setResultHTML(highlight(code, languages[finalLanguage], finalLanguage));
         }
-    }, [language, codeRef.current?.textContent]);
+    }, [finalLanguage, children]);
 
     return (
-        <pre className={className}>
-            <code className={typeof language !== 'undefined' ? `language-${language}` : ''} ref={codeRef}>
+        <pre className={`${prismClassName} ${className}`}>
+            {/* Hidden element for getting textContent of children. */}
+            <code style={{ display: 'none' }} ref={codeRef}>
                 {children}
             </code>
+            {resultHTML === null ? (
+                children
+            ) : (
+                // eslint-disable-next-line react/no-danger
+                <code className={prismClassName} dangerouslySetInnerHTML={{ __html: resultHTML }} />
+            )}
         </pre>
     );
 };

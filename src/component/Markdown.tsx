@@ -1,4 +1,5 @@
-import React, { lazy, Suspense, SuspenseProps } from 'react';
+import React, { lazy, Suspense, SuspenseProps, useEffect, useState } from 'react';
+import type { PluggableList } from 'react-markdown/lib/react-markdown';
 import type { Components } from 'react-markdown/lib/ast-to-react';
 
 import { Code } from 'component/Code';
@@ -6,6 +7,8 @@ import { Code } from 'component/Code';
 // Since the size of react-markdown is large, we use code splitting and lazy loading.
 // (See https://reactjs.org/docs/code-splitting.html.)
 const ReactMarkdown = lazy(() => import('react-markdown'));
+
+const remarkPluginsPromise = Promise.all([import('remark-gfm')]);
 
 /**
  * 'Mapper' which overrides html-to-jsx conversion.
@@ -24,6 +27,7 @@ export const defaultMarkdownMapper: MarkdownMapper = {
         if (inline) {
             return <code className={'InlineCodeView'}>{children}</code>;
         }
+
         return <Code language={language}>{children}</Code>;
     },
 };
@@ -41,10 +45,20 @@ interface Props {
 /**
  * Markdown renderer built on react-markdown.
  */
-export const Markdown = ({ className, fallback, children, mapper = defaultMarkdownMapper }: Props) => (
-    <Suspense fallback={fallback}>
-        <ReactMarkdown className={className} components={mapper}>
-            {children}
-        </ReactMarkdown>
-    </Suspense>
-);
+export const Markdown = ({ className, fallback, children, mapper = defaultMarkdownMapper }: Props) => {
+    const [remarkPlugins, setRemarkPlugins] = useState<PluggableList>([]);
+
+    useEffect(() => {
+        (async () => {
+            setRemarkPlugins((await remarkPluginsPromise).map(result => result.default));
+        })();
+    }, []);
+
+    return (
+        <Suspense fallback={fallback}>
+            <ReactMarkdown className={className} components={mapper} remarkPlugins={remarkPlugins}>
+                {children}
+            </ReactMarkdown>
+        </Suspense>
+    );
+};
