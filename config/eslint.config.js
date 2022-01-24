@@ -20,7 +20,7 @@ module.exports = {
         'plugin:prettier/recommended',
         'plugin:jsdoc/recommended'
     ],
-    ignorePatterns: ['node_modules/', 'src/**/*.css.d.ts', 'src/**/*.scss.d.ts'],
+    ignorePatterns: ['node_modules/', 'src/**/*.css.d.ts', 'src/**/*.scss.d.ts', 'src/**/*.stories.*'],
     settings: {
         'import/resolver': {
             node: {
