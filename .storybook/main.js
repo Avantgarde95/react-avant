@@ -13,6 +13,9 @@ module.exports = {
         builder: 'webpack5'
     },
     stories: [
+        // Always show this file first.
+        '../src/story/Docs.stories.tsx',
+        // And show other files.
         '../src/story/**/*.stories.@(js|jsx|ts|tsx|md|mdx)'
     ],
     addons: [
