@@ -27,6 +27,7 @@ module.exports = (env, argv) => {
         'react',
         'prismjs',
         'react-markdown',
+        'remark-gfm',
         'luminous-lightbox'
     ];
 
