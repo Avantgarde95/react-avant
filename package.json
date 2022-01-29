@@ -65,13 +65,13 @@
         "task:hooks": "husky install",
         "task:start-storybook": "start-storybook",
         "task:build-storybook": "build-storybook -o docs",
-        "debug": "run-p \"task:typing -- --watch\" \"task:debug\"",
-        "build": "run-s \"task:typing\" \"task:build\"",
         "lint": "run-s \"task:lint -- ./src/**/*.{js,ts,jsx,tsx}\"",
         "lint:fix": "run-s \"task:lint -- --fix ./src/**/*.{js,ts,jsx,tsx}\"",
         "lint:fix-one": "run-s \"task:lint -- --fix {1}\" --",
-        "storybook": "run-s \"task:typing\" \"task:start-storybook\"",
-        "storybook:production": "run-s \"task:typing\" \"task:build-storybook\"",
+        "library:debug": "run-p \"task:typing -- --watch\" \"task:debug\"",
+        "library:build": "run-s \"task:typing\" \"task:build\"",
+        "storybook:debug": "run-s \"task:typing\" \"task:start-storybook\"",
+        "storybook:build": "run-s \"task:typing\" \"task:build-storybook\"",
         "prepare": "run-s \"task:hooks\""
     }
 }
