@@ -7,8 +7,18 @@ import 'prismjs/themes/prism-okaidia.css';
  * Code props.
  */
 interface Props {
+    /**
+     * Programming language.
+     * (Default: Plain text)
+     */
     language?: string;
+    /**
+     * Class for styling the container.
+     */
     className?: string;
+    /**
+     * Code which will be highlighted.
+     */
     children: ReactNode;
 }
 /**

@@ -13,9 +13,21 @@ export declare const defaultMarkdownMapper: MarkdownMapper;
  * Markdown props.
  */
 interface Props {
+    /**
+     * Class for styling the container.
+     */
     className?: string;
+    /**
+     * This will be rendered instead while react-markdown is being loaded.
+     */
     fallback: SuspenseProps['fallback'];
+    /**
+     * Content written in Markdown format.
+     */
     children: string;
+    /**
+     * Use this to map some HTML tags to the custom React components.
+     */
     mapper?: Components;
 }
 /**
