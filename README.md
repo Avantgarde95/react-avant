@@ -1,7 +1,9 @@
 # react-avant
 
+![Logo](src/image/Logo.png)
+
 Collection of the React components commonly used in my projects.  
-You can the example of each component at <https://avantgarde95.github.io/react-avant/>.
+You can see the documentation and the examples at [here](https://avantgarde95.github.io/react-avant/).
 
 ### How to build/debug the library
 

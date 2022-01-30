@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Markdown } from 'component/Markdown';
+import Logo from 'image/Logo.png';
 
 const Docs = ({ children }: { children: string }) => (
     <Markdown fallback={'Loading...'}>
@@ -20,8 +21,10 @@ const Template: ComponentStory<typeof Docs> = () => (
         {`
 # react-avant
 
-- Commonly used React components
-- See [here](https://github.com/Avantgarde95/react-avant) to view the code.
+![Logo](${Logo})
+
+Collection of the React components commonly used in my projects.  
+Visit [here](https://github.com/Avantgarde95/react-avant) to see the code.
 
 ## Features
 
